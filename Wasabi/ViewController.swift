@@ -55,11 +55,13 @@ class ViewController: UIViewController {
 }
 
 func randomPosition(in size: CGSize) -> CGPoint {
-  let widthRange = (0..<Int(size.width))
-  let x = Int.random(in: widthRange)
+  let halfWidth = size.width / 2.0
+  let widthRange = -halfWidth..<halfWidth
+  let x = CGFloat.random(in: widthRange).rounded()
   
-  let heightRange = (0..<Int(size.height))
-  let y = Int.random(in: heightRange)
+  let halfHeight = size.height / 2.0
+  let heightRange = -halfHeight..<halfHeight
+  let y = CGFloat.random(in: heightRange).rounded()
   
   return CGPoint.init(x: x, y: y)
 }
