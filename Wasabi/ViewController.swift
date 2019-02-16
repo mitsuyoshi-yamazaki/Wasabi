@@ -25,9 +25,13 @@ class ViewController: UIViewController {
     let scene = SKScene.init(size: view.bounds.size)
     scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
     
-    let shapeNode = SKShapeNode.init(ellipseOf: .init(width: 10.0, height: 10.0))
-    scene.addChild(shapeNode)
+    let size: CGFloat = 10.0
+    let shapeNode = SKShapeNode.init(ellipseOf: .init(width: size, height: size))
+    let physicsBody = SKPhysicsBody.init(circleOfRadius: size / 2.0)
+    physicsBody.affectedByGravity = false
+    shapeNode.physicsBody = physicsBody
     
+    scene.addChild(shapeNode)
     sceneView.presentScene(scene)
   }
 }
