@@ -7,14 +7,27 @@
 //
 
 import UIKit
+import SpriteKit
 
 class ViewController: UIViewController {
+  
+  private var sceneView: SKView {
+    return view as! SKView
+  }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
-
+    setUpScene()
+  }
+  
+  private func setUpScene() {
+    let scene = SKScene.init(size: view.bounds.size)
+    scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+    
+    let shapeNode = SKShapeNode.init(ellipseOf: .init(width: 10.0, height: 10.0))
+    scene.addChild(shapeNode)
+    
+    sceneView.presentScene(scene)
+  }
 }
-
