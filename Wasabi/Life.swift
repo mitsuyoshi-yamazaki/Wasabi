@@ -27,6 +27,16 @@ class Life {
     }
   }
   
+  var node: SKNode? {
+    switch status {
+    case let .alive(_, node):
+      return  node
+      
+    case .dead:
+      return nil
+    }
+  }
+  
   init(position: CGPoint, energy: Double) {
     let size = type(of: self).size
     let shapeNode = SKShapeNode.init(ellipseOf: .init(width: size, height: size))
@@ -34,6 +44,7 @@ class Life {
     
     let physicsBody = SKPhysicsBody.init(circleOfRadius: size / 2.0)
     physicsBody.affectedByGravity = false
+    physicsBody.linearDamping = 1.0
     shapeNode.physicsBody = physicsBody
     
     if showLabels {
@@ -46,6 +57,10 @@ class Life {
     }
     
     status = .alive(energy: energy, node: shapeNode)
+  }
+  
+  func update() {
+    node?.physicsBody?.applyForce(.init(dx: 1, dy: 0))
   }
 }
 

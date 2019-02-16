@@ -24,10 +24,13 @@ class ViewController: UIViewController {
   
   private func setUpScene() {
     let scene = SKScene.init(size: view.bounds.size)
+    scene.delegate = self
     scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
     
     lives = createLives(in: view.bounds.size)
-    nodes(for: lives).forEach { scene.addChild($0) }
+    nodes(for: lives).forEach { node in
+      scene.addChild(node)
+    }
     
     sceneView.presentScene(scene)
   }
@@ -51,6 +54,16 @@ class ViewController: UIViewController {
         }
       }
       .compactMap { $0 }
+  }
+  
+  private func update() {    
+    lives.forEach { $0.update() }
+  }
+}
+
+extension ViewController: SKSceneDelegate {
+  func update(_ currentTime: TimeInterval, for scene: SKScene) {
+    update()
   }
 }
 
