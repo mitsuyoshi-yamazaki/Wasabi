@@ -36,7 +36,16 @@ class Life {
     physicsBody.affectedByGravity = false
     shapeNode.physicsBody = physicsBody
     
-    status = .alive(energy: energy, node: shapeNode)    
+    if showLabels {
+      let labelNode = SKLabelNode.init(text: "\(position)")
+      labelNode.fontSize = 12.0
+      
+      shapeNode.addChild(labelNode)
+      
+      print(position)
+    }
+    
+    status = .alive(energy: energy, node: shapeNode)
   }
 }
 

@@ -13,6 +13,7 @@
 		2C80A76D221858F000A446E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C80A76C221858F000A446E5 /* Assets.xcassets */; };
 		2C80A770221858F000A446E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C80A76E221858F000A446E5 /* LaunchScreen.storyboard */; };
 		2C80A77A2218615200A446E5 /* Life.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C80A7792218615200A446E5 /* Life.swift */; };
+		2C80A77C2218684C00A446E5 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C80A77B2218684C00A446E5 /* Environment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		2C80A76F221858F000A446E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C80A771221858F000A446E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C80A7792218615200A446E5 /* Life.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Life.swift; sourceTree = "<group>"; };
+		2C80A77B2218684C00A446E5 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				2C80A765221858ED00A446E5 /* AppDelegate.swift */,
 				2C80A767221858ED00A446E5 /* ViewController.swift */,
 				2C80A7792218615200A446E5 /* Life.swift */,
+				2C80A77B2218684C00A446E5 /* Environment.swift */,
 				2C80A769221858ED00A446E5 /* Main.storyboard */,
 				2C80A76C221858F000A446E5 /* Assets.xcassets */,
 				2C80A76E221858F000A446E5 /* LaunchScreen.storyboard */,
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C80A77A2218615200A446E5 /* Life.swift in Sources */,
+				2C80A77C2218684C00A446E5 /* Environment.swift in Sources */,
 				2C80A768221858ED00A446E5 /* ViewController.swift in Sources */,
 				2C80A766221858ED00A446E5 /* AppDelegate.swift in Sources */,
 			);
