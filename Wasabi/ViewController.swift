@@ -35,6 +35,18 @@ class ViewController: UIViewController {
     sceneView.presentScene(scene)
   }
   
+  private func createEnclosures(in area: CGSize) -> [SKNode] {
+    SKPhysicsBody.init(edgeLoopFrom: <#T##CGRect#>)
+    
+    let shapeNode = SKShapeNode.init(ellipseOf: .init(width: size, height: size))
+    shapeNode.position = position
+    
+    let physicsBody = SKPhysicsBody.init(circleOfRadius: size / 2.0)
+    physicsBody.affectedByGravity = false
+    physicsBody.linearDamping = 1.0
+    shapeNode.physicsBody = physicsBody
+  }
+  
   private func createLives(in area: CGSize) -> [Life] {
     return (0..<10)
       .map { _ in
@@ -56,7 +68,7 @@ class ViewController: UIViewController {
       .compactMap { $0 }
   }
   
-  private func update() {    
+  private func update() {
     lives.forEach { $0.update() }
   }
 }

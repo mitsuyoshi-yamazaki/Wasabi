@@ -60,7 +60,7 @@ class Life {
   }
   
   func update() {
-    node?.physicsBody?.applyForce(.init(dx: 1, dy: 0))
+    node?.physicsBody?.applyForce(.init(dx: 1.0, dy: 1.0))
   }
 }
 
