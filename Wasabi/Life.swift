@@ -22,6 +22,11 @@ class Life {
     let physicsBody = SKPhysicsBody.init(circleOfRadius: size / 2.0)
     physicsBody.affectedByGravity = false
     physicsBody.linearDamping = 1.0
+
+    physicsBody.categoryBitMask = CollisionCategory.life.rawValue
+    physicsBody.collisionBitMask = CollisionCategory.wall.rawValue
+    physicsBody.contactTestBitMask = 0
+
     shapeNode.physicsBody = physicsBody
     
     if showLabels {

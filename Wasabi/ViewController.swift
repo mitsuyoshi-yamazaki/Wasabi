@@ -42,14 +42,17 @@ class ViewController: UIViewController {
 
     let physicsBody = SKPhysicsBody.init(edgeLoopFrom: wallNode.frame)
     physicsBody.isDynamic = false
-    physicsBody.contactTestBitMask = 0xFFFFFFFF
+
+    physicsBody.categoryBitMask = CollisionCategory.wall.rawValue
+    physicsBody.collisionBitMask = UInt32.max
+    physicsBody.contactTestBitMask = 0
 
     wallNode.physicsBody = physicsBody
     scene.addChild(wallNode)
   }
 
   private func createLives(in area: CGSize) -> [Life] {
-    return (0..<10)
+    return (0..<numberOfLives)
       .map { _ in
         Life.init(position: randomPosition(in: area), energy: Life.energy)
       }
