@@ -57,15 +57,7 @@ class ViewController: UIViewController {
   
   private func nodes(`for` lives: [Life]) -> [SKNode] {
     return lives
-      .map { life -> SKNode? in
-        switch life.status {
-        case let .alive(_, node):
-          return node
-          
-        default:
-          return nil
-        }
-      }
+      .map { $0.node }
       .compactMap { $0 }
   }
   

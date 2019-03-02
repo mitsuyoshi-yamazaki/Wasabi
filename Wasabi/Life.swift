@@ -10,34 +10,10 @@ import Foundation
 import SpriteKit
 
 class Life {
-  enum Status {
-    case alive(energy: Double, node: SKNode)
-    case dead
-  }
+  private(set) var energy: CGFloat = 0.0
+  private(set) var node: SKNode?
   
-  private(set) var status: Status
-  
-  var energy: Double {
-    switch status {
-    case let .alive(energy, _):
-      return  energy
-      
-    case .dead:
-      return 0.0
-    }
-  }
-  
-  var node: SKNode? {
-    switch status {
-    case let .alive(_, node):
-      return node
-      
-    case .dead:
-      return nil
-    }
-  }
-  
-  init(position: CGPoint, energy: Double) {
+  init(position: CGPoint, energy: CGFloat) {
     let size = type(of: self).size
     let shapeNode = SKShapeNode.init(ellipseOf: .init(width: size, height: size))
     shapeNode.position = position
@@ -55,16 +31,37 @@ class Life {
       
       print(position)
     }
-    
-    status = .alive(energy: energy, node: shapeNode)
+
+    self.energy = energy
+    node = shapeNode
   }
-  
+
+  // MARK: -
   func update() {
-    node?.physicsBody?.applyForce(.init(dx: 1, dy: 0))
+    move(to: .init(dx: 1, dy: 0))
+  }
+
+  // MARK: -
+  func move(to direction: CGVector) {
+    let energyNeeded = direction.magnitude
+
+    guard energy > energyNeeded else {
+      return
+    }
+
+    energy -= energyNeeded
+
+    node?.physicsBody?.applyForce(direction)
   }
 }
 
 extension Life {
   static let size: CGFloat = 10.0
-  static let energy: Double = 10.0
+  static let energy: CGFloat = 10.0
+}
+
+extension CGVector {
+  var magnitude: CGFloat {
+    return CGFloat(sqrtf(Float(dx * dx + dy * dy)))
+  }
 }
