@@ -32,9 +32,22 @@ class ViewController: UIViewController {
       scene.addChild(node)
     }
     
+    setUpWalls(in: scene)
     sceneView.presentScene(scene)
   }
-  
+
+  private func setUpWalls(in scene: SKScene) {
+    let wallNode = SKShapeNode.init(rect: scene.frame)
+    wallNode.strokeColor = .clear
+
+    let physicsBody = SKPhysicsBody.init(edgeLoopFrom: wallNode.frame)
+    physicsBody.isDynamic = false
+    physicsBody.contactTestBitMask = 0xFFFFFFFF
+
+    wallNode.physicsBody = physicsBody
+    scene.addChild(wallNode)
+  }
+
   private func createLives(in area: CGSize) -> [Life] {
     return (0..<10)
       .map { _ in

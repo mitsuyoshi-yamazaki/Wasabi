@@ -30,7 +30,7 @@ class Life {
   var node: SKNode? {
     switch status {
     case let .alive(_, node):
-      return  node
+      return node
       
     case .dead:
       return nil
