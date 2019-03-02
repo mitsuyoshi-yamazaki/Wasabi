@@ -12,7 +12,8 @@ import SpriteKit
 class Life {
   private(set) var energy: CGFloat = 0.0
   private(set) var node: SKNode?
-  
+  private(set) var labelNode: SKLabelNode?
+
   init(position: CGPoint, energy: CGFloat) {
     let size = type(of: self).size
     let shapeNode = SKShapeNode.init(ellipseOf: .init(width: size, height: size))
@@ -24,10 +25,11 @@ class Life {
     shapeNode.physicsBody = physicsBody
     
     if showLabels {
-      let labelNode = SKLabelNode.init(text: "\(position)")
+      let labelNode = SKLabelNode.init(text: "\(position.rounded)")
       labelNode.fontSize = 12.0
       
       shapeNode.addChild(labelNode)
+      self.labelNode = labelNode
       
       print(position)
     }
@@ -39,6 +41,14 @@ class Life {
   // MARK: -
   func update() {
     move(to: .init(dx: 1, dy: 0))
+
+    if let node = node, energy > 0.0 {
+      updateLabel(with: "\(node.position.rounded)")
+    }
+  }
+
+  func updateLabel(with text: String) {
+    labelNode?.text = text
   }
 
   // MARK: -
@@ -46,6 +56,8 @@ class Life {
     let energyNeeded = direction.magnitude
 
     guard energy > energyNeeded else {
+      energy = 0.0  // FixMe:
+      updateLabel(with: "DEAD")
       return
     }
 
@@ -63,5 +75,11 @@ extension Life {
 extension CGVector {
   var magnitude: CGFloat {
     return CGFloat(sqrtf(Float(dx * dx + dy * dy)))
+  }
+}
+
+extension CGPoint {
+  var rounded: CGPoint {
+    return CGPoint.init(x: x.rounded(), y: y.rounded())
   }
 }

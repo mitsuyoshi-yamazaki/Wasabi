@@ -75,11 +75,11 @@ extension ViewController: SKSceneDelegate {
 func randomPosition(in size: CGSize) -> CGPoint {
   let halfWidth = size.width / 2.0
   let widthRange = -halfWidth..<halfWidth
-  let x = CGFloat.random(in: widthRange).rounded()
+  let x = CGFloat.random(in: widthRange)
   
   let halfHeight = size.height / 2.0
   let heightRange = -halfHeight..<halfHeight
-  let y = CGFloat.random(in: heightRange).rounded()
+  let y = CGFloat.random(in: heightRange)
   
   return CGPoint.init(x: x, y: y)
 }
