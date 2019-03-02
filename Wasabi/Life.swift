@@ -21,7 +21,8 @@ class Life {
     
     let physicsBody = SKPhysicsBody.init(circleOfRadius: size / 2.0)
     physicsBody.affectedByGravity = false
-    physicsBody.linearDamping = 1.0
+    physicsBody.linearDamping = 3.0
+    physicsBody.density = type(of: self).density
 
     physicsBody.categoryBitMask = CollisionCategory.life.rawValue
     physicsBody.collisionBitMask = CollisionCategory.wall.rawValue
@@ -73,8 +74,9 @@ class Life {
 }
 
 extension Life {
-  static let size: CGFloat = 10.0
+  static let size: CGFloat = 2.0
   static let energy: CGFloat = 10.0
+  static let density: CGFloat = 25.0 // およそ (10 / size) ^ 2
 }
 
 extension CGVector {
